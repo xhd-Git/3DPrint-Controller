@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">3DPrint-Controller</string>
+    <string name="app_name">3D打印姬</string>
+    <string name="title_activity_main">首页</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">设置</string>
 </resources>
