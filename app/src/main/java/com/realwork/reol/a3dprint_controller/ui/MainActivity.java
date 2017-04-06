@@ -1,8 +1,11 @@
 package com.realwork.reol.a3dprint_controller.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,25 +17,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.realwork.reol.a3dprint_controller.R;
+import com.realwork.reol.a3dprint_controller.ui.Adapter.ViewPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    @BindView(R.id.bottomNavigationView)
+    BottomNavigationView bnv;
+    @BindView(R.id.vp_main)
+    ViewPager viewPager;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    List<Fragment> list = new ArrayList<>(3);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        ButterKnife.bind(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -42,6 +54,75 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        setupData();
+    }
+
+    private void setupData() {
+        list.add(new MoreModelFragment());
+        list.add(new MainFragment());
+        list.add(new PrintFragment());
+
+
+        FragmentManager fm = getSupportFragmentManager();
+        ViewPagerAdapter adapter = new ViewPagerAdapter(fm, list);
+        viewPager.setAdapter(adapter);
+
+        initPages();
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        bnv.setSelectedItemId(R.id.tab_more);
+                        toolbar.setTitle("更多");
+                        break;
+                    case 1:
+                        bnv.setSelectedItemId(R.id.tab_model);
+                        toolbar.setTitle("模型");
+                        break;
+                    case 2:
+                        bnv.setSelectedItemId(R.id.tab_print);
+                        toolbar.setTitle("打印");
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.tab_model:
+                        viewPager.setCurrentItem(1, true);
+                        break;
+                    case R.id.tab_print:
+                        viewPager.setCurrentItem(2, true);
+                        break;
+                    case R.id.tab_more:
+                        viewPager.setCurrentItem(0, true);
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+
+    private void initPages() {
+        viewPager.setCurrentItem(1);
+        bnv.setSelectedItemId(R.id.tab_model);
+        toolbar.setTitle("模型");
     }
 
     @Override
