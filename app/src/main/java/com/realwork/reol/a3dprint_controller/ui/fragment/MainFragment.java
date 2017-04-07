@@ -1,4 +1,4 @@
-package com.realwork.reol.a3dprint_controller.ui;
+package com.realwork.reol.a3dprint_controller.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,12 +13,12 @@ import com.realwork.reol.a3dprint_controller.R;
  * Created by reol on 2017/4/6.
  */
 
-public class MoreModelFragment extends Fragment {
+public class MainFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_more,container,false);
+        View view = inflater.inflate(R.layout.frag_main,container,false);
         return view;
     }
 }

@@ -12,7 +12,7 @@ import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
 
-import com.realwork.reol.a3dprint_controller.Logx;
+import com.realwork.reol.a3dprint_controller.Logxn;
 
 
 /**
@@ -163,12 +163,12 @@ public class STLRenderer implements Renderer {
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
 		if (stlObject != null) {
-			Logx.i("maxX:" + stlObject.maxX);
-			Logx.i("minX:" + stlObject.minX);
-			Logx.i("maxY:" + stlObject.maxY);
-			Logx.i("minY:" + stlObject.minY);
-			Logx.i("maxZ:" + stlObject.maxZ);
-			Logx.i("minZ:" + stlObject.minZ);
+			Logxn.i("maxX:" + stlObject.maxX);
+			Logxn.i("minX:" + stlObject.minX);
+			Logxn.i("maxY:" + stlObject.maxY);
+			Logxn.i("minY:" + stlObject.minY);
+			Logxn.i("maxZ:" + stlObject.maxZ);
+			Logxn.i("minZ:" + stlObject.minZ);
 		}
 
 		GLU.gluPerspective(gl, 45f, aspectRatio, 1f, 5000f);// (stlObject.maxZ - stlObject.minZ) * 10f + 100f);
@@ -269,12 +269,12 @@ public class STLRenderer implements Renderer {
 	 */
 	private void setTransLation_Z (){
 		if (stlObject != null) {
-			Logx.i("zwcmaxX:" + stlObject.maxX);
-			Logx.i("zwcminX:" + stlObject.minX);
-			Logx.i("zwcmaxY:" + stlObject.maxY);
-			Logx.i("zwcminY:" + stlObject.minY);
-			Logx.i("zwcmaxZ:" + stlObject.maxZ);
-			Logx.i("zwcminZ:" + stlObject.minZ);
+			Logxn.i("zwcmaxX:" + stlObject.maxX);
+			Logxn.i("zwcminX:" + stlObject.minX);
+			Logxn.i("zwcmaxY:" + stlObject.maxY);
+			Logxn.i("zwcminY:" + stlObject.minY);
+			Logxn.i("zwcmaxZ:" + stlObject.maxZ);
+			Logxn.i("zwcminZ:" + stlObject.minZ);
 		}
 		//算x、y轴差值
 		float distance_x = stlObject.maxX - stlObject.minX;

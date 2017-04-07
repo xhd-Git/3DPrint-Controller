@@ -12,7 +12,7 @@ import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
 import com.realwork.reol.a3dprint_controller.IOUtils;
-import com.realwork.reol.a3dprint_controller.Logx;
+import com.realwork.reol.a3dprint_controller.Logxn;
 
 import static java.lang.Math.sqrt;
 
@@ -62,7 +62,7 @@ public class STLView extends GLSurfaceView {
 	private float previousY;
 
 	private void changeDistance(float scale) {
-		Logx.i("scale" + scale);
+		Logxn.i("scale" + scale);
 		stlRenderer.scale = scale;
 	}
 

@@ -6,18 +6,20 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.realwork.reol.a3dprint_controller.R;
 import com.realwork.reol.a3dprint_controller.ui.Adapter.ViewPagerAdapter;
+import com.realwork.reol.a3dprint_controller.ui.base.BaseActivity;
+import com.realwork.reol.a3dprint_controller.ui.fragment.MainFragment;
+import com.realwork.reol.a3dprint_controller.ui.fragment.MoreModelFragment;
+import com.realwork.reol.a3dprint_controller.ui.fragment.PrintFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.bottomNavigationView)

@@ -1,14 +1,25 @@
-package com.realwork.reol.a3dprint_controller;
+package com.realwork.reol.a3dprint_controller.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
-import com.realwork.reol.a3dprint_controller.ui.MainActivity;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.realwork.reol.a3dprint_controller.R;
+import com.realwork.reol.a3dprint_controller.ui.base.BaseActivity;
 
-public class WelAct extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class WelAct extends BaseActivity {
+    @BindView(R.id.iv_wel)
+    SimpleDraweeView imgWel;
+    @BindView(R.id.tv_wel)
+    TextView tvWel;
 
     private Handler handler = new Handler(){
         @Override
@@ -23,12 +34,15 @@ public class WelAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wel);
+        ButterKnife.bind(this);
+
+        imgWel.setImageURI("https://xhd-git.github.io/HDSite/bs/bs_flush.png");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(3000);
                     handler.sendEmptyMessage(0);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -10,7 +10,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.realwork.reol.a3dprint_controller.Logx;
+import com.realwork.reol.a3dprint_controller.Logxn;
 import com.realwork.reol.a3dprint_controller.R;
 
 import java.nio.ByteBuffer;
@@ -221,10 +221,10 @@ public class STLObject  {
 				float[]processResult = null;
 				try {
 					if (isText(stlBytes[0])) {
-						Logx.i("trying text...");
+						Logxn.i("trying text...");
 						processResult = processText(new String(stlBytes[0]));
 					} else {
-						Logx.i("trying binary...");
+						Logxn.i("trying binary...");
 						processResult = processBinary(stlBytes[0]);
 					}
 				} catch (Exception e) {

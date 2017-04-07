@@ -5,11 +5,11 @@ package com.realwork.reol.a3dprint_controller;
  * @author zhaowencong
  *
  */
-public class Logx {
+public class Logxn {
 	private static boolean isDebug = true;
 	
 	public static void setDebug(boolean isDebug) {
-		Logx.isDebug = isDebug;
+		Logxn.isDebug = isDebug;
 	}
 
 	public static final String TAG = "STLViewer";
