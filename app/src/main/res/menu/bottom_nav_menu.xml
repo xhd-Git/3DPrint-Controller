@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/tab_more"
-        android:title="更多"/>
+    <item android:id="@+id/tab_favorite"
+        android:title="@string/bottom_nav_favorite"/>
     <item android:id="@+id/tab_model"
-        android:title="模型"/>
+        android:title="@string/bottom_nav_model"/>
     <item android:id="@+id/tab_print"
-        android:title="打印"/>
+        android:title="@string/bottom_nav_print"/>
 </menu>

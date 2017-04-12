@@ -1,5 +1,7 @@
 package com.realwork.reol.a3dprint_controller.ui;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +12,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -82,16 +86,16 @@ public class MainActivity extends BaseActivity
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        bnv.setSelectedItemId(R.id.tab_more);
-                        toolbar.setTitle("更多");
+                        bnv.setSelectedItemId(R.id.tab_favorite);
+                        toolbar.setTitle(R.string.bottom_nav_favorite);
                         break;
                     case 1:
                         bnv.setSelectedItemId(R.id.tab_model);
-                        toolbar.setTitle("模型");
+                        toolbar.setTitle(R.string.bottom_nav_model);
                         break;
                     case 2:
                         bnv.setSelectedItemId(R.id.tab_print);
-                        toolbar.setTitle("打印");
+                        toolbar.setTitle(R.string.bottom_nav_print);
                         break;
                 }
             }
@@ -112,7 +116,7 @@ public class MainActivity extends BaseActivity
                     case R.id.tab_print:
                         viewPager.setCurrentItem(2, true);
                         break;
-                    case R.id.tab_more:
+                    case R.id.tab_favorite:
                         viewPager.setCurrentItem(0, true);
                         break;
                 }
@@ -159,24 +163,38 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        AlertDialog dialog;
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (id) {
+            case R.id.nav_local:
+                break;
+            case R.id.nav_history:
+                break;
+            case R.id.nav_checkUpdate:
+                break;
+            case R.id.nav_setting:
+//                startActivity(new Intent(MainActivity.this, SettingAct.class));
+                break;
+            case R.id.nav_share:
+                break;
+            case R.id.nav_report:
+                break;
+            case R.id.nav_about:
+                dialog = builder.setTitle("关于")
+                        .setMessage("毕业设计作品\n\n" + "可能有各种bug，但我知道这是个好app")
+                        .setCancelable(true)
+                        .setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create();
+                dialog.show();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -9,6 +9,10 @@
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
 
+    <string name="bottom_nav_favorite">收藏</string>
+    <string name="bottom_nav_model">模型</string>
+    <string name="bottom_nav_print">打印</string>
+
     <!-- Show STL -->
     <string name="stl_load_progress_message">请等一会.</string>
     <string name="stl_load_progress_title">STL 文件加载中…</string>
@@ -21,4 +25,9 @@
     <!-- toggle button -->
     <string name="toggleButtonMove">移动</string>
     <string name="toggleButtonRotate">旋转</string>
+
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">设置</string>
+    <string name="default_cache">256</string>
 </resources>
