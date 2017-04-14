@@ -9,11 +9,12 @@
     <application
         android:name=".ui.base.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_test"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_test"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.base.BaseActivity" />
         <activity
             android:name=".ui.WelAct"
             android:theme="@style/ActFullScreen">
@@ -25,9 +26,24 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".ui.SettingAct"
+            android:label="设置" />
+        <activity
+            android:name=".ui.VersionInfoAct"
+            android:label="版本信息" />
+        <activity
+            android:name=".ui.ReportAct"
+            android:label="反馈" />
+        <activity
+            android:name=".ui.ImportModelAct"
+            android:label="导入模型" />
+        <activity
+            android:name=".ui.DownloadManageAct"
+            android:label="下载管理" />
+        <activity android:name=".ui.PrintHistoryAct"
+            android:label="打印历史"/>
     </application>
 
 </manifest>

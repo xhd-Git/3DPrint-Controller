@@ -9,8 +9,8 @@
             android:id="@+id/nav_history"
             android:title="打印历史" />
         <item
-            android:id="@+id/nav_checkUpdate"
-            android:title="检查更新" />
+            android:id="@+id/nav_downloadManager"
+            android:title="下载管理" />
         <item
             android:id="@+id/nav_setting"
             android:title="设置" />

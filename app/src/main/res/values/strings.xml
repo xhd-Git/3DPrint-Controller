@@ -30,4 +30,6 @@
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">设置</string>
     <string name="default_cache">256</string>
+    <string name="version_name">1.0.0</string>
+
 </resources>

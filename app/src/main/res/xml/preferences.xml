@@ -4,20 +4,18 @@
         android:title="网络相关"
         android:key="net_preference">
         <SwitchPreference
-            android:defaultValue="false"
-            android:key="auto_update"
+            android:key="only_wifi"
             android:title="仅Wi-Fi下联网" />
 
         <SwitchPreference
-            android:defaultValue="true"
-            android:title="预加载STL文件"/>
+            android:title="预加载STL文件"
+            android:key="auto_load"/>
 
         <SwitchPreference
-            android:defaultValue="false"
             android:title="使用2G/3G/4G网络下载"
             android:key="download_no_wifi"/>
-
     </PreferenceCategory>
+
 
     <PreferenceCategory
         android:title="文件相关"
@@ -25,13 +23,32 @@
         <EditTextPreference
             android:title="设置缓存上限(MB)"
             android:key="cache_max"
-            android:summary="@string/default_cache"/>
+            android:summary="256"
+            android:hint="256"/>
         <Preference
             android:title="清理缓存"
+            android:key="clear_cache"
             />
         <SwitchPreference
             android:title="自动清理缓存"
+            android:key="auto_clear_cache"
             android:summary="退出应用后，自动清除所有缓存"/>
     </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="其他"
+        android:key="other_preference">
+        <Preference
+            android:title="检查更新"
+            android:key="check_update"
+            />
+
+        <Preference
+            android:title="版本信息"
+            android:key="version_info"
+            android:summary="@string/version_name"/>
+
+    </PreferenceCategory>
+
 
 </PreferenceScreen>

@@ -15,7 +15,7 @@ import com.realwork.reol.a3dprint_controller.ui.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WelAct extends BaseActivity {
+public class WelAct extends AppCompatActivity {
     @BindView(R.id.iv_wel)
     SimpleDraweeView imgWel;
     @BindView(R.id.tv_wel)
@@ -42,7 +42,7 @@ public class WelAct extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                     handler.sendEmptyMessage(0);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

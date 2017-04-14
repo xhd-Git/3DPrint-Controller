@@ -1,8 +1,11 @@
 package com.realwork.reol.a3dprint_controller.ui;
 
+import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -14,9 +17,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.realwork.reol.a3dprint_controller.R;
 import com.realwork.reol.a3dprint_controller.ui.Adapter.ViewPagerAdapter;
@@ -31,7 +36,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.bottomNavigationView)
@@ -40,8 +45,13 @@ public class MainActivity extends BaseActivity
     ViewPager viewPager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
 
     List<Fragment> list = new ArrayList<>(3);
+
+    private int selectedId = 0;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +133,58 @@ public class MainActivity extends BaseActivity
                 return true;
             }
         });
+
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                selectedId = 0;
+            }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                switch (selectedId){
+                    case R.id.nav_local:
+                        startActivity(new Intent(MainActivity.this, ImportModelAct.class));
+                        break;
+                    case R.id.nav_history:
+                        startActivity(new Intent(MainActivity.this, PrintHistoryAct.class));
+                        break;
+                    case R.id.nav_downloadManager:
+                        startActivity(new Intent(MainActivity.this, DownloadManageAct.class));
+                        break;
+                    case R.id.nav_setting:
+                        startActivity(new Intent(MainActivity.this, SettingAct.class));
+                        break;
+                    case R.id.nav_share:
+                        break;
+                    case R.id.nav_report:
+                        startActivity(new Intent(MainActivity.this, ReportAct.class));
+                        break;
+                    case R.id.nav_about:
+                        dialog = builder.setTitle("关于")
+                                .setMessage("毕业设计作品\n\n" + "可能有各种bug，但我知道这是个好app")
+                                .setCancelable(true)
+                                .setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                }).create();
+                        dialog.show();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            @Override
+            public void onDrawerStateChanged(int newState) {
+            }
+        });
     }
 
     private void initPages() {
@@ -133,9 +195,10 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+            selectedId = 0;
         } else {
             super.onBackPressed();
         }
@@ -165,40 +228,8 @@ public class MainActivity extends BaseActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        AlertDialog dialog;
-        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.nav_local:
-                break;
-            case R.id.nav_history:
-                break;
-            case R.id.nav_checkUpdate:
-                break;
-            case R.id.nav_setting:
-//                startActivity(new Intent(MainActivity.this, SettingAct.class));
-                break;
-            case R.id.nav_share:
-                break;
-            case R.id.nav_report:
-                break;
-            case R.id.nav_about:
-                dialog = builder.setTitle("关于")
-                        .setMessage("毕业设计作品\n\n" + "可能有各种bug，但我知道这是个好app")
-                        .setCancelable(true)
-                        .setPositiveButton("知道了", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).create();
-                dialog.show();
-                break;
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        selectedId = item.getItemId();
         return true;
     }
 }
