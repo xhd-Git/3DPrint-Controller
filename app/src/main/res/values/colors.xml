@@ -14,4 +14,10 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="material_gray_700">#616161</color>
+
+    <color name="google_blue">#4285f4</color>
+    <color name="google_red">#ea4335</color>
+    <color name="google_green">#34a853</color>
+    <color name="google_yellow">#fbbc05</color>
+
 </resources>

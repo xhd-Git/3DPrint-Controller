@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="fresco-1.2.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/be0b535da8e4a73eb86c11929e8fc9420f257379/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/be0b535da8e4a73eb86c11929e8fc9420f257379/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/217187d0f5fc7a5e72e52128e4474bf0ec4c86e6/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/217187d0f5fc7a5e72e52128e4474bf0ec4c86e6/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
