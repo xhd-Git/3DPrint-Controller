@@ -4,6 +4,7 @@
         android:title="网络相关"
         android:key="net_preference">
         <SwitchPreference
+            android:defaultValue="true"
             android:key="only_wifi"
             android:title="仅Wi-Fi下联网" />
 

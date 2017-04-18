@@ -42,8 +42,10 @@
         <activity
             android:name=".ui.DownloadManageAct"
             android:label="下载管理" />
-        <activity android:name=".ui.PrintHistoryAct"
-            android:label="打印历史"/>
+        <activity
+            android:name=".ui.PrintHistoryAct"
+            android:label="打印历史" />
+        <activity android:name=".ui.ModelInfoAct"></activity>
     </application>
 
 </manifest>

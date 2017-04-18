@@ -1,23 +1,31 @@
 package com.realwork.reol.a3dprint_controller.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.realwork.reol.a3dprint_controller.R;
 import com.realwork.reol.a3dprint_controller.entity.ModelInfoEntity;
 import com.realwork.reol.a3dprint_controller.ui.Adapter.RecyclerAdapter;
+import com.realwork.reol.a3dprint_controller.ui.ModelInfoAct;
+import com.realwork.reol.a3dprint_controller.widgets.ModelInfoPopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,12 +47,13 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     RecyclerView recyclerView;
 
     List<ModelInfoEntity> list = new ArrayList<>();
+    RecyclerAdapter adapter;
 
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            List<ModelInfoEntity> list = new ArrayList<>(3);
+//            List<ModelInfoEntity> list = new ArrayList<>(3);
 
             ModelInfoEntity entity = new ModelInfoEntity();
             ModelInfoEntity entity1 = new ModelInfoEntity();
@@ -71,14 +80,13 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             entity2.setSize("1783 kb");
             entity2.setStlUrl("011.stl");
 
-            list.clear();
 
-            list.add(entity);
-            list.add(entity1);
-            list.add(entity2);
+            list.add(0,entity);
+            list.add(0,entity1);
+            list.add(0,entity2);
 
-            recyclerView.setAdapter(new RecyclerAdapter(getContext(),list));
 
+            adapter.updateData(list);
             srlMain.setRefreshing(false);
         }
     };
@@ -115,11 +123,13 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         entity2.setSize("896 kb");
         entity2.setStlUrl("004.stl");
         list.add(entity2);
+
+        adapter = new RecyclerAdapter(getContext(),list);
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_main,container,false);
         ButterKnife.bind(this,view);
 
@@ -130,10 +140,33 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         srlMain.setOnRefreshListener(this);
 
-        recyclerView.setAdapter(new RecyclerAdapter(getContext(),list));
+        adapter.setOnClickListener(new RecyclerAdapter.OnRecyclerItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                ModelInfoEntity tempEntity = list.get(position);
+//                Intent intent = new Intent(getContext(),ModelInfoAct.class);
+//                intent.putExtra("model",tempEntity);
+//                startActivity(intent);
+                ModelInfoPopupWindow popupWindow = new ModelInfoPopupWindow(getActivity(),tempEntity);
+                popupWindow.show(container);
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Toast.makeText(getContext(), "long long long~", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+//                super.getItemOffsets(outRect, view, parent, state);
+                outRect.set(0,10,0,10); //只添加间隔，不画任何东西
+            }
+        });
         return view;
     }
 
