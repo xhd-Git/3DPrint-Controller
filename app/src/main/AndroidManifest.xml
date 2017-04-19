@@ -45,7 +45,8 @@
         <activity
             android:name=".ui.PrintHistoryAct"
             android:label="打印历史" />
-        <activity android:name=".ui.ModelInfoAct"></activity>
+        <activity android:name=".ui.ModelInfoAct" />
+        <activity android:name=".ui.StlViewAct"></activity>
     </application>
 
 </manifest>

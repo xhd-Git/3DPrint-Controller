@@ -39,10 +39,6 @@ public class STLView extends GLSurfaceView {
 		stlRenderer.requestRedraw();
 	}
 
-	/**
-	 * @param context
-	 * @return
-	 */
 	private byte[] getSTLBytes(Context context, Uri uri) {
 		byte[] stlBytes = null;
 		InputStream inputStream = null;
@@ -230,16 +226,11 @@ public class STLView extends GLSurfaceView {
 	public Uri getUri() {
 		return uri;
 	}
-	/**
-	 * 更新object 刷新界面
-	 * @param stlObject
-	 */
+
 	public void setNewSTLObject(STLObject stlObject){
 		stlRenderer.requestRedraw(stlObject);
 	}
-	/**
-	 * 刷新界面
-	 */
+
 	public void requestRedraw(){
 		stlRenderer.requestRedraw();
 	}

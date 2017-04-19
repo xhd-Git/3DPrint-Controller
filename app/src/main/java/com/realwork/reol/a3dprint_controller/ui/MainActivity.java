@@ -1,11 +1,8 @@
 package com.realwork.reol.a3dprint_controller.ui;
 
-import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -14,22 +11,18 @@ import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.realwork.reol.a3dprint_controller.R;
 import com.realwork.reol.a3dprint_controller.ui.Adapter.ViewPagerAdapter;
-import com.realwork.reol.a3dprint_controller.ui.base.BaseActivity;
 import com.realwork.reol.a3dprint_controller.ui.fragment.MainFragment;
-import com.realwork.reol.a3dprint_controller.ui.fragment.MoreModelFragment;
+import com.realwork.reol.a3dprint_controller.ui.fragment.FavoriteFragment;
 import com.realwork.reol.a3dprint_controller.ui.fragment.PrintFragment;
 
 import java.util.ArrayList;
@@ -78,7 +71,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupData() {
-        list.add(new MoreModelFragment());
+        list.add(new FavoriteFragment());
         list.add(new MainFragment());
         list.add(new PrintFragment());
 

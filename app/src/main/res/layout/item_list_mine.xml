@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/item_list_mine_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@color/accent"/>
+
+    <TextView
+        android:id="@+id/item_list_mine_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新建收藏夹"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_size_18sp"
+        android:layout_alignTop="@id/item_list_mine_icon"
+        android:layout_toRightOf="@id/item_list_mine_icon"
+        android:layout_marginLeft="@dimen/margin_5dp"
+        android:layout_marginTop="3dp"/>
+
+    <TextView
+        android:id="@+id/item_list_mine_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12/121 已下载"
+        android:textSize="12sp"
+        android:textColor="@color/secondary_text"
+        android:layout_below="@id/item_list_mine_title"
+        android:layout_toRightOf="@id/item_list_mine_icon"
+        android:layout_marginLeft="@dimen/margin_5dp" />
+
+    <ImageView
+        android:id="@+id/item_list_mine_more"
+        android:layout_width="18dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_5dp"
+        />
+
+</RelativeLayout>
