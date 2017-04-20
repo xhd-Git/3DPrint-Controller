@@ -72,7 +72,7 @@ public class STLRenderer implements Renderer {
 			return;
 		}
 		bufferCounter--;
-		System.out.println("zwcdraw-----------------------------------");
+
 		gl.glLoadIdentity();
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
@@ -92,32 +92,32 @@ public class STLRenderer implements Renderer {
 			drawGrids(gl);
 		}
 
-		// draw axis
-		if (displayAxes) {
-			gl.glLineWidth(3f);
-			float[] vertexArray = { -100, 0, 0, 100, 0, 0, 0, -100, 0, 0, 100, 0, 0, 0, -100, 0, 0, 100 };
-			FloatBuffer lineBuffer = getFloatBufferFromArray(vertexArray);
-			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, lineBuffer);
-		
-			// X : red
-			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[] { 1.0f, 0f, 0f, 0.75f }, 0);
-			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[] { 1.0f, 0f, 0f, 0.5f }, 0);
-			gl.glDrawArrays(GL10.GL_LINES, 0, 2);
-
-			// Y : blue
-			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[] { 0f, 0f, 1.0f, 0.75f }, 0);
-			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[] { 0f, 0f, 1.0f, 0.5f }, 0);
-			gl.glDrawArrays(GL10.GL_LINES, 2, 2);
-
-			// Z : green
-			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[] { 0f, 1.0f, 0f, 0.75f }, 0);
-			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[] { 0f, 1.0f, 0f, 0.5f }, 0);
-			gl.glDrawArrays(GL10.GL_LINES, 4, 2);
-		}
+//		// draw axis
+//		if (displayAxes) {
+//			gl.glLineWidth(3f);
+//			float[] vertexArray = { -100, 0, 0, 100, 0, 0, 0, -100, 0, 0, 100, 0, 0, 0, -100, 0, 0, 100 };
+//			FloatBuffer lineBuffer = getFloatBufferFromArray(vertexArray);
+//			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, lineBuffer);
+//
+//			// X : red
+//			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[] { 1.0f, 0f, 0f, 0.75f }, 0);
+//			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[] { 1.0f, 0f, 0f, 0.5f }, 0);
+//			gl.glDrawArrays(GL10.GL_LINES, 0, 2);
+//
+//			// Y : blue
+//			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[] { 0f, 0f, 1.0f, 0.75f }, 0);
+//			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[] { 0f, 0f, 1.0f, 0.5f }, 0);
+//			gl.glDrawArrays(GL10.GL_LINES, 2, 2);
+//
+//			// Z : green
+//			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, new float[] { 0f, 1.0f, 0f, 0.75f }, 0);
+//			gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, new float[] { 0f, 1.0f, 0f, 0.5f }, 0);
+//			gl.glDrawArrays(GL10.GL_LINES, 4, 2);
+//		}
 
 		// draw object
 		if (stlObject != null) {
-			// FIXME transparency applying does not correctly
+
 			gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_AMBIENT, new float[] { 0.75f,0.75f,0.75f,1.0f }, 0);
 			
 			gl.glMaterialfv(GL10.GL_FRONT, GL10.GL_DIFFUSE, new float[] { 0.75f,0.75f,0.75f,1.0f }, 0);
@@ -162,19 +162,11 @@ public class STLRenderer implements Renderer {
 		gl.glLoadIdentity();
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
-		if (stlObject != null) {
-			Logxn.i("maxX:" + stlObject.maxX);
-			Logxn.i("minX:" + stlObject.minX);
-			Logxn.i("maxY:" + stlObject.maxY);
-			Logxn.i("minY:" + stlObject.minY);
-			Logxn.i("maxZ:" + stlObject.maxZ);
-			Logxn.i("minZ:" + stlObject.minZ);
-		}
 
 		GLU.gluPerspective(gl, 45f, aspectRatio, 1f, 5000f);// (stlObject.maxZ - stlObject.minZ) * 10f + 100f);
 
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
-		GLU.gluLookAt(gl, 0, 0, 100f, 0, 0, 0, 0, 1f, 0);
+		GLU.gluLookAt(gl, 100f, 0, 0, 0, 0, 0, 0, 0, 1f);
 	}
 	
 	@Override
@@ -187,7 +179,6 @@ public class STLRenderer implements Renderer {
 		gl.glEnable(GL10.GL_BLEND);
 //		 gl.glEnable(GL10.GL_TEXTURE_2D);     
 //		 gl.glBlendFunc(GL10.GL_ONE, GL10.GL_SRC_COLOR);
-		// FIXME This line seems not to be needed?
 		gl.glClearDepthf(1.0f);
 		gl.glEnable(GL10.GL_DEPTH_TEST);
 		gl.glDepthFunc(GL10.GL_LEQUAL);
@@ -201,7 +192,7 @@ public class STLRenderer implements Renderer {
 		gl.glEnable(GL10.GL_LIGHTING);
 		gl.glLightModelfv(GL10.GL_LIGHT_MODEL_AMBIENT, getFloatBufferFromArray(new  float[]{0.5f,0.5f,0.5f,1.0f}));// 全局环境光
 		gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT_AND_DIFFUSE, new float[]{0.3f, 0.3f, 0.3f, 1.0f}, 0);
-		gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] { 0f, 0f, 1000f, 1.0f }, 0);
+		gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, new float[] { 1000f, 1000f, 1000f, 1.0f }, 0);
 		gl.glEnable(GL10.GL_LIGHT0);
 
 	}
@@ -268,14 +259,7 @@ public class STLRenderer implements Renderer {
 	 * 调整Z轴平移位置    （目的式为了模型展示大小适中）
 	 */
 	private void setTransLation_Z (){
-		if (stlObject != null) {
-			Logxn.i("zwcmaxX:" + stlObject.maxX);
-			Logxn.i("zwcminX:" + stlObject.minX);
-			Logxn.i("zwcmaxY:" + stlObject.maxY);
-			Logxn.i("zwcminY:" + stlObject.minY);
-			Logxn.i("zwcmaxZ:" + stlObject.maxZ);
-			Logxn.i("zwcminZ:" + stlObject.minZ);
-		}
+
 		//算x、y轴差值
 		float distance_x = stlObject.maxX - stlObject.minX;
 		float distance_y = stlObject.maxY - stlObject.minY;

@@ -5,7 +5,8 @@
         android:icon="@mipmap/ic_favorite_white_18dp"/>
     <item android:id="@+id/tab_model"
         android:title="@string/bottom_nav_model"
-        android:icon="@mipmap/ic_whatshot_white_18dp"/>
+        android:icon="@mipmap/ic_whatshot_white_18dp"
+        />
     <item android:id="@+id/tab_print"
         android:title="@string/bottom_nav_print"
         android:icon="@mipmap/ic_print_white_18dp"/>

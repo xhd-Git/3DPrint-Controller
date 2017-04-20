@@ -20,6 +20,8 @@
         android:elevation="4dp"
         android:background="#fdfdfd"
         app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/bottom_nav_selector"
+        app:itemTextColor="@color/bottom_nav_selector"
         android:id="@+id/bottomNavigationView">
 
     </android.support.design.widget.BottomNavigationView>

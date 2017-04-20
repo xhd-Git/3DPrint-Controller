@@ -1,6 +1,7 @@
 package com.realwork.reol.a3dprint_controller.widgets;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.realwork.reol.a3dprint_controller.R;
 import com.realwork.reol.a3dprint_controller.entity.ModelInfoEntity;
+import com.realwork.reol.a3dprint_controller.ui.StlViewAct;
 
 /**
  * Created by reol on 2017/4/18.
@@ -94,7 +96,12 @@ public class ModelInfoPopupWindow extends PopupWindow implements View.OnClickLis
                 Toast.makeText(context, "i like this", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.popup_detail:
-                Toast.makeText(context, "check stl model", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "check stl model", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, StlViewAct.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("stlPath",entity.getStlUrl());
+                intent.putExtra("name",entity.getName());
+                context.startActivity(intent);
                 break;
             case R.id.popup_print:
                 Toast.makeText(context, "let's print it", Toast.LENGTH_SHORT).show();

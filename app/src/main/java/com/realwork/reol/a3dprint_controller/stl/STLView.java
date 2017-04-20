@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.realwork.reol.a3dprint_controller.IOUtils;
@@ -167,7 +168,8 @@ public class STLView extends GLSurfaceView {
 					float y = event.getY();
 					
 					float dx = x - previousX;
-					float dy = y - previousY;
+//					float dy = y - previousY;
+                    float dy = previousY - y;
 					previousX = x;
 					previousY = y;
 					

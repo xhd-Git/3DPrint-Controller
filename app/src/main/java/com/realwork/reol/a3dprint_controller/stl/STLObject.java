@@ -58,7 +58,7 @@ public class STLObject  {
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.setCancelable(false);
 		
-		progressDialog.show();
+//		progressDialog.show();
 		
 		return progressDialog;
 	}
@@ -173,7 +173,7 @@ public class STLObject  {
 			
 			float[] processBinary(byte[] stlBytes) throws Exception {
 				
-				vertext_size=getIntWithLittleEndian(stlBytes, 80);;
+				vertext_size=getIntWithLittleEndian(stlBytes, 80);
 				vertex_array=new float[vertext_size*9];
 				normal_array=new float[vertext_size*9];
 				
@@ -221,10 +221,10 @@ public class STLObject  {
 				float[]processResult = null;
 				try {
 					if (isText(stlBytes[0])) {
-						Logxn.i("trying text...");
+
 						processResult = processText(new String(stlBytes[0]));
 					} else {
-						Logxn.i("trying binary...");
+
 						processResult = processBinary(stlBytes[0]);
 					}
 				} catch (Exception e) {

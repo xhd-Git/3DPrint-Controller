@@ -85,7 +85,7 @@ public class IOUtils {
 		try {
 			closeable.close();
 		} catch (Throwable e) {
-			System.out.println("文件关闭失败");
+			e.printStackTrace();
 		}		
 	}
 }
